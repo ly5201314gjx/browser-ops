@@ -34,6 +34,7 @@ def main() -> int:
     run([sys.executable, str(ROOT / 'scripts' / 'browser_plan_builder.py'), str(PROFILE), str(TASK_DIR)])
     run([sys.executable, str(ROOT / 'scripts' / 'browser_runbook_builder.py'), str(TASK_DIR)])
     run([sys.executable, str(ROOT / 'scripts' / 'browser_handoff_payload.py'), str(TASK_DIR)])
+    run([sys.executable, str(ROOT / 'scripts' / 'site_connectivity_adapter.py'), 'https://news.ycombinator.com/news', str(PROFILE), str(TASK_DIR)])
     run([sys.executable, str(ROOT / 'scripts' / 'autopilot_tick.py'), str(TASK_DIR)])
     run([sys.executable, str(ROOT / 'scripts' / 'failure_recovery_engine.py'), 'plan', str(TASK_DIR)])
     run([sys.executable, str(ROOT / 'scripts' / 'recovery_runbook_builder.py'), str(TASK_DIR)])
@@ -43,6 +44,7 @@ def main() -> int:
         'browser_plan.json',
         'runbook.json',
         'browser_handoff_payload.json',
+        'connectivity_report.json',
         'runbook.exec.json',
         'recovery_plan.json',
         'recovery_runbook.json',

@@ -22,6 +22,13 @@
       "postScrollPauseMs": [280, 920]
     }
   },
+  "connectivity": {
+    "timeoutSeconds": 12,
+    "retries": 2,
+    "backoffMs": 800,
+    "proxyEnv": "BROWSER_OPS_PROXY",
+    "fallbackBaseUrls": []
+  },
   "humanCheckpoints": {
     "captcha": true,
     "mfa": true,

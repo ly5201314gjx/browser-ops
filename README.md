@@ -93,6 +93,15 @@
 - `Hybrid`：先用浏览器侦察，再切回 HTTP 做高效采集
 - `Human`：碰到登录、MFA、验证码、审批墙时，老老实实停下
 
+此外，项目现在还带了一个**网站连通性适配层（Site Connectivity Adapter）**：
+- 先尝试 direct 直连
+- 再尝试 fallback base URL
+- 再尝试用户自有代理（通过环境变量）
+- 带 retries + backoff
+- 输出 `connectivity_report.json`
+
+它的目标是提高连通性适配能力，不是绕安全边界。🌐
+
 这意味着：
 **它不是死脑筋自动化，而是会选路。** 🧭
 
@@ -245,6 +254,7 @@ Browser Ops 不是这样。
 - [架构说明](docs/architecture.md)
 - [工作流说明](docs/workflow.md)
 - [OpenClaw 技能安装说明](docs/openclaw-skill-install.md)
+- [网站连通性适配层说明](docs/site-connectivity-adapter.md)
 
 ---
 

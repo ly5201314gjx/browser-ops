@@ -20,6 +20,7 @@ Usage:
   browser-ops next <task_dir>
   browser-ops runbook <task_dir>
   browser-ops handoff <task_dir>
+  browser-ops connectivity <url> [profile.json] [task_dir]
   browser-ops recover-plan <task_dir>
   browser-ops recover-runbook <task_dir>
 """
@@ -66,6 +67,8 @@ def main() -> int:
         return run([sys.executable, str(SCRIPTS / "browser_runbook_builder.py"), *args])
     if cmd == "handoff":
         return run([sys.executable, str(SCRIPTS / "browser_handoff_payload.py"), *args])
+    if cmd == "connectivity":
+        return run([sys.executable, str(SCRIPTS / "site_connectivity_adapter.py"), *args])
     if cmd == "recover-plan":
         return run([sys.executable, str(SCRIPTS / "failure_recovery_engine.py"), "plan", *args])
     if cmd == "recover-runbook":

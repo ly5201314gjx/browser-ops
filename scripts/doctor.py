@@ -27,6 +27,7 @@ REQUIRED_FILES = [
     SCRIPTS / "action_policy_engine.py",
     SCRIPTS / "browser_handoff_payload.py",
     SCRIPTS / "failure_recovery_engine.py",
+    SCRIPTS / "site_connectivity_adapter.py",
 ]
 
 

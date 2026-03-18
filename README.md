@@ -14,143 +14,242 @@
 </p>
 
 <p align="center">
-  <b>不是又一个“会点按钮的浏览器脚本仓库”。</b><br/>
-  <b>这是一个专门为 OpenClaw 打造的 Browser Operations Platform：</b><br/>
-  intelligence、route selection、action policy、handoff、autopilot、failure recovery —— 全部进内核。🔥
+  <b>不是又一个“会点按钮、会抓点数据、炸了就重跑”的浏览器脚本仓库。</b><br/>
+  <b>这是一个专门为 OpenClaw 打造的 Browser Operations Platform。🔥</b>
 </p>
 
 ---
 
-## 中文介绍 🇨🇳
+## 这到底是什么？🧠
 
-很多浏览器自动化项目，做到最后还是停在这几步：
+`Browser Ops for OpenClaw` 是一个围绕浏览器任务构建的**平台级工作流内核**。  
+它不是一次性脚本，不是只会点按钮的自动化玩具，也不是“写完就忘”的临时爬虫集合。
+
+它真正要解决的问题是：
+
+> **怎么把浏览器任务，做成一个可观察、可恢复、可交接、可持续进化的系统。**
+
+很多项目只能做到：
 - 打开页面
-- 点按钮
+- 点几个按钮
 - 抓一点数据
-- 爆了就手工重来
+- 一出错就手工排查 😵
 
-**Browser Ops 不想停在这里。**
+而 Browser Ops 想做的是更高一个层级的事情：
+- 先看懂页面，再决定路线 🧭
+- 让不同站点走不同策略，而不是一把梭 ⚙️
+- 遇到浏览器边界时优雅停下，而不是乱撞 ✋
+- 能把任务交给人、交给代理、再继续推进 🤝
+- 失败后不是“重来一遍”，而是有恢复计划、有重试预算、有恢复剧本 ♻️
 
-它要做的是一件更硬核、更像平台内核的事：
-
-> **把浏览器任务，做成 OpenClaw 内部一个可观察、可恢复、可交接、可策略化的工作流系统。**
-
-所以这个项目不是“几段自动化脚本”，而是一个为 **OpenClaw** 专门打造的 **Browser Operations Platform**。它把复杂浏览器任务拆成 6 层：
-
-1. **Intelligence** — 先看懂页面，再决定怎么走
-2. **Orchestration** — 用 phase + route 驱动完整工作流
-3. **Action Policy** — 统一设备姿态、动作节奏、触控参数、随机扰动边界
-4. **Execution** — list / detail / pagination / batch detail 真执行
-5. **Handoff** — browser boundary、human-in-the-loop、handoff payload 全是一等公民
-6. **Recovery** — incident registry、recovery plan、retry budget、cooldown、auto-resume hooks
-
-这玩意的目标，不是让浏览器“勉强自动化”，而是让 OpenClaw 在浏览器任务上拥有**真正的平台级内核能力**。⚡
+这就是它的核心价值。
 
 ---
 
-## English Intro 🇺🇸
+## 为什么它很不一样？💥
 
-**Browser Ops for OpenClaw** is not just another browser automation repo.
+因为它不是把“浏览器自动化”当成几个脚本文件，  
+而是把它当成一个**真正的系统问题**来做。
 
-It is a browser workflow kernel designed specifically for **OpenClaw**, built around:
-- page intelligence
-- route-aware orchestration
-- action-policy injection
-- browser handoff payloads
-- non-browser autopilot
-- incident-aware failure recovery
+### 普通浏览器项目通常只关心：
+- 能不能打开网页
+- 能不能点击
+- 能不能抓到内容
 
-The goal is simple:
+### Browser Ops 关心的是：
+- 页面现在到底是什么类型？
+- 该走 HTTP、Browser、Hybrid 还是 Human Route？
+- 当前动作节奏、设备姿态、交互参数应该是什么？
+- 哪些步骤可以自动推进？哪些必须停在 browser boundary？
+- 如果失败了，怎么恢复最合理？
+- 如果需要人接手，怎么把上下文和策略完整交过去？
 
-> Turn browser tasks into a recoverable, inspectable, handoff-friendly, strategy-driven platform workflow.
+这就让它从“能跑的脚本”，升级成了：
 
----
-
-## Why this hits different 💥
-
-### Ordinary browser repos usually stop at:
-- open page
-- click button
-- scrape data
-- crash
-- pray 🙃
-
-### Browser Ops goes further:
-- understand the page first 🧠
-- select the right route before execution 🧭
-- carry action policy into plans and runbooks 🎛️
-- stop cleanly at browser boundaries ✋
-- hand off to human/agent with structured payloads 📦
-- recover from incidents with budgets, cooldowns, and recovery runbooks ♻️
-
-**That difference is the whole project.**
+> **专门为 OpenClaw 服务的浏览器工作流平台。** 🚀
 
 ---
 
-## 7 个升级点，这次全上了 ✅
+## 它能干什么？✨
 
-### 1. Hero Banner
-- 已加 `docs/hero-banner.svg`
-- 首页第一屏直接拉满项目气质
+### 1）页面侦察（Site Intelligence）
+系统会先分析页面，再判断它更像：
+- 列表页
+- 详情页
+- 登录页
+- 搜索页
+- 需要人工介入的检查点
 
-### 2. Quickstart Demo
-- 首页增加快速体验路径
-- 不废话，直接让人知道怎么跑
-
-### 3. Bilingual README
-- 中英双语，不只给中文圈看
-- 更适合扩散与分享
-
-### 4. Roadmap / Versioned Milestones
-- 增加路线图与版本里程碑
-- 告诉别人这不是一次性 demo
-
-### 5. Architecture / Workflow 图
-- 已补 SVG：
-  - `docs/architecture.svg`
-  - `docs/workflow.svg`
-- 也保留文字版说明
-
-### 6. Release v0.1.0
-- 会发布首个 release
-- 给仓库一个正式起点
-
-### 7. 更炸的 About / Topics / Repo Packaging
-- 重写 description
-- 优化 topics
-- 让仓库首页第一印象更像成熟项目
+这样做的好处是：
+**不是一上来就瞎执行，而是先看懂再动手。**
 
 ---
 
-## Quickstart Demo ⚡
+### 2）路线决策（Route Selection）
+根据页面状态和任务需求，系统会决定走哪条路线：
+- `HTTP`：能直接拿数据，就别浪费浏览器资源
+- `Browser`：必须渲染、点击、滚动、交互时再上
+- `Hybrid`：先用浏览器侦察，再切回 HTTP 做高效采集
+- `Human`：碰到登录、MFA、验证码、审批墙时，老老实实停下
 
-> 最适合在 **OpenClaw** 环境中使用。
+这意味着：
+**它不是死脑筋自动化，而是会选路。** 🧭
 
-### 1) 准备一个 site profile
-用现成示例：
-- `assets/example_profiles/hackernews-browser.json`
+---
 
-### 2) 初始化任务目录
+### 3）动作策略层（Action Policy Layer）
+这部分非常关键。  
+它会把：
+- 设备类型（桌面 / 手机 / 平板）📱💻
+- 页面操作节奏
+- 点击/滑动/停顿参数
+- 检查点策略
+- 风险容忍度
+
+统一揉成一个 `action_policy.json`。
+
+然后再把这套策略注入到：
+- 浏览器执行计划
+- runbook
+- handoff payload
+- 恢复流程
+
+也就是说，系统不只是知道“下一步做什么”，
+还知道：
+
+> **应该用什么姿态、什么节奏、什么边界来做。**
+
+这就是专业性。
+
+---
+
+### 4）人机协同（Human-in-the-Loop）🤝
+真正复杂的浏览器任务，永远不可能 100% 靠硬跑解决。
+
+所以 Browser Ops 把“人机协同”做成了一等公民：
+- `handoff_packet.json`
+- `browser_handoff_payload.json`
+- browser boundary 语义
+- resume 流程
+
+小白也能理解成一句话：
+
+> **该自动的时候自动，该停的时候停，该交给人时就交得清清楚楚。**
+
+不会出现那种“系统卡住了但你根本不知道该接什么”的傻情况。
+
+---
+
+### 5）自动推进（Autopilot）⚙️
+Autopilot 不是假装“全自动浏览器”，而是做更聪明的事：
+
+- 自动重建 runbook
+- 自动推进非浏览器部分
+- 遇到浏览器边界立即停下
+- 把后续依赖步骤标记为 blocked
+
+这让整个系统非常清楚地知道：
+- 哪部分能自己推进
+- 哪部分必须靠浏览器动作完成
+- 哪部分完成后才能继续
+
+这不是偷懒，反而是更专业的工作流设计。
+
+---
+
+### 6）失败恢复系统（Failure Recovery System）♻️
+这是整个项目最狠的一块之一。
+
+很多项目失败之后，所谓“恢复”其实就是：
+- 报个错
+- 打个日志
+- 人自己看着办
+
+Browser Ops 不是这样。
+
+它会把失败当成正式事件处理：
+- 注册 incident
+- 分类 failure category
+- 分配 retry budget
+- 增加 cooldown window
+- 生成 recovery plan
+- 产出 recovery runbook
+- 条件满足时自动触发 auto-resolve hook
+
+说白了就是：
+
+> **失败不是终点，而是另一条有组织的工作流。**
+
+这就是平台级系统该有的味道。🔥
+
+---
+
+## 真实算法介绍（简洁版）⚙️
+
+### 1. 路由内核（Route Kernel）
+先分析页面，再生成 `recommendedRoute`，决定走：
+- HTTP
+- Browser
+- Hybrid
+- Human
+
+### 2. 动作策略内核（Action Policy Kernel）
+把设备画像、站点策略、人机协同策略、交互默认参数合并成统一策略层，输出到计划、runbook 和 handoff payload 中。
+
+### 3. 浏览器边界模型（Browser Boundary Model）
+一旦进入 browser-controlled slice：
+- autopilot 停止
+- 保留 `pendingBrowserSteps`
+- 标记 `blockedAfterBrowser`
+- 生成 handoff payload
+
+### 4. 恢复内核（Recovery Kernel）
+故障出现后，系统会：
+- 记录 incident
+- 自动分类
+- 应用重试预算和冷却窗口
+- 构建 recovery plan
+- 生成 recovery runbook
+- 满足条件时自动恢复或自动关单
+
+这四个内核加起来，才构成 Browser Ops 的真实机制。🧠
+
+---
+
+## 架构与工作流图 🗺️
+
+- [架构图（SVG）](docs/architecture.svg)
+- [工作流图（SVG）](docs/workflow.svg)
+- [架构说明](docs/architecture.md)
+- [工作流说明](docs/workflow.md)
+
+---
+
+## 快速开始 ⚡
+
+> 这个项目是为 **OpenClaw** 专门打造的，最适合在 OpenClaw 环境中使用。
+
+### 初始化任务目录
 ```bash
 python3 scripts/browser_ops_orchestrator.py init assets/example_profiles/hackernews-browser.json /tmp/browser_ops_demo 3 2 true
 ```
 
-### 3) 生成 runbook
+### 生成 runbook
 ```bash
 python3 scripts/browser_runbook_builder.py /tmp/browser_ops_demo
 ```
 
-### 4) 自动推进非 browser 部分
+### 自动推进非浏览器部分
 ```bash
 python3 scripts/autopilot_tick.py /tmp/browser_ops_demo
 ```
 
-### 5) 浏览器切片交接
+### 浏览器切片交接
 ```bash
 python3 scripts/browser_handoff_payload.py /tmp/browser_ops_demo
 ```
 
-### 6) 失败后恢复
+### 失败恢复
 ```bash
 python3 scripts/failure_recovery_engine.py plan /tmp/browser_ops_demo
 python3 scripts/recovery_runbook_builder.py /tmp/browser_ops_demo
@@ -158,106 +257,25 @@ python3 scripts/recovery_runbook_builder.py /tmp/browser_ops_demo
 
 ---
 
-## 真实算法介绍（简洁版）🧠
+## 为什么它是 OpenClaw 专用项目？🌊
 
-### 1. Route Kernel
-先通过 `site_intelligence.py` 分析页面，再生成 `recommendedRoute`，让 orchestrator 决定走：
-- `http`
-- `browser`
-- `hybrid`
-- `human`
+因为它从一开始就不是为了做“通用脚本大杂烩”。
 
-### 2. Action Policy Kernel
-把：
-- device profile
-- site profile strategy fields
-- human mode
-- interaction defaults / overrides
+它是围绕 OpenClaw 的这些能力设计出来的：
+- skill 体系
+- browser tool
+- runbook 模型
+- session workflow
+- human-in-the-loop 协同
+- 状态文件 + 恢复链路
 
-合并成 `action_policy.json`，再注入：
-- `browser_plan.json`
-- `runbook.json`
-- `handoff_packet.json`
-- `browser_handoff_payload.json`
+所以这不是“把浏览器自动化塞进 OpenClaw”。
 
-### 3. Browser Boundary Model
-遇到 browser-controlled slice 时：
-- autopilot 停止推进
-- 保留 `pendingBrowserSteps`
-- 标记 `blockedAfterBrowser`
-- 生成 handoff payload
+而是：
 
-### 4. Recovery Kernel
-失败后不只记日志，而是：
-- 注册 incident
-- 自动分类 category
-- 分配 retry budget / cooldown
-- 产出 recovery plan
-- 生成 recovery runbook
-- 条件满足时触发 auto-resolve hook
+> **为 OpenClaw 原生长出来的一套 Browser Operations 内核。**
 
-这四个内核叠在一起，才构成 Browser Ops 的真实机制。⚙️
-
----
-
-## 核心能力总览
-
-### Site Intelligence
-- classify page types
-- detect checkpoints
-- recommend route
-- bootstrap profiles
-
-### Intelligence-Aware Orchestrator
-- phase-driven workflow
-- route-aware decisions
-- next-action generation
-
-### Action Policy Layer
-- device posture
-- timing / motion policy
-- risk tolerance
-- checkpoint policy
-
-### Human-Collab / Real-Device Mode
-- handoff packet
-- browser handoff payload
-- browser boundary semantics
-- resume flow
-
-### Autopilot Mode
-- execute non-browser glue work
-- stop at browser boundary
-- preserve blocked downstream steps
-
-### Failure Recovery System
-- incident registry
-- recovery plan / runbook
-- retry budgets
-- cooldown windows
-- auto-resume hooks
-
----
-
-## 架构与工作流图 🗺️
-
-- [Architecture Diagram (SVG)](docs/architecture.svg)
-- [Workflow Diagram (SVG)](docs/workflow.svg)
-- [Architecture Notes](docs/architecture.md)
-- [Workflow Notes](docs/workflow.md)
-
----
-
-## 为什么它是 OpenClaw 专用的？
-
-因为这个项目从设计开始就不是“通用浏览器脚本合集”，而是围绕 **OpenClaw 的技能体系、runbook 模型、browser tool、human-in-the-loop、session workflow** 来构建的。
-
-换句话说：
-
-> **这不是把浏览器自动化硬塞进 OpenClaw。**
-> **这是为 OpenClaw 原生长出来的一套浏览器工作流内核。**
-
-这也是它最值钱的地方。🌊
+这点非常重要，也正是这个仓库最值钱的地方之一。✨
 
 ---
 
@@ -266,16 +284,16 @@ python3 scripts/recovery_runbook_builder.py /tmp/browser_ops_demo
 这个项目明确不做：
 - captcha bypass
 - MFA / access-control bypass
-- evading platform security protections
-- pretending to be a human to defeat protections
+- 绕平台安全机制
+- 伪装真人去对抗检测
 
-碰到这些情况，正确路径永远是：
-- stop
-- capture artifacts
+遇到这些情况，正确做法永远是：
+- 停下
+- 留痕
 - handoff
 - resume
 
-边界感不是束缚，是平台可信度的一部分。✅
+边界清楚，系统才可信。✅
 
 ---
 
@@ -290,45 +308,29 @@ python3 scripts/recovery_runbook_builder.py /tmp/browser_ops_demo
 
 ### v0.2.0
 - site-specific recovery heuristics
-- stronger parser overrides
 - browser slice resume hooks
+- stronger parser/profile overrides
 - richer recovery lineage
 
 ### v0.3.0
+- visual dashboards
+- stronger hybrid route adapters
 - more showcase profiles
-- visual architecture dashboards
-- stronger hybrid route support
 - policy-aware browser execution adapters
 
 ---
 
-## Repo Structure
+## 最后说一句 🔥
 
-```text
-browser-ops/
-├── SKILL.md
-├── README.md
-├── docs/
-├── assets/
-├── references/
-└── scripts/
-```
+如果你想找的只是一个“会点网页的脚本项目”，那 GitHub 上这种仓库太多了。
 
----
+但如果你要的是：
+- 更像系统内核
+- 更像工作流平台
+- 更像真正能跑、能停、能交接、能恢复的浏览器能力层
 
-## Final Words ✨
+那 Browser Ops for OpenClaw 走的，就是这条路。  
+而且这条路，不是随便写写，是狠狠干出来的。⚡
 
-如果你也受够了这些东西：
-- 只能 demo 一次的浏览器脚本
-- 一爆就只能重跑的自动化任务
-- 没状态、没恢复、没交接的工作流
-
-那你大概率会明白 Browser Ops 的方向为什么值得继续狠狠干。
-
-**Browser Ops for OpenClaw**，不是为了“再多一个自动化仓库”。
-
-而是为了：
-
-> **把浏览器任务，做成真正可运行、可恢复、可交接、可进化的平台内核。**
-
-如果这条路线也戳到你了，欢迎 ⭐ Star / Fork / Issue / Discussion。🔥🔥🔥
+如果你也认这条路线，欢迎 ⭐ Star / Fork / Issue / Discussion。  
+一起把它继续干大。🚀

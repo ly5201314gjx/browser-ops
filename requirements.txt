@@ -1,0 +1,3 @@
+# Browser Ops runtime dependencies
+# Current core scripts are designed to work on Python stdlib first.
+# Add optional packages here as the project grows.

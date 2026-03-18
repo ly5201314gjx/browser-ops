@@ -251,6 +251,26 @@ Browser Ops 不是这样。
 
 > 这个项目是为 **OpenClaw** 专门打造的，最适合在 OpenClaw 环境中使用。
 
+### 一键安装
+```bash
+bash install.sh
+```
+
+### 一键 Demo
+```bash
+bash demo.sh
+```
+
+### 环境自检
+```bash
+python3 scripts/doctor.py
+```
+
+### Smoke Test
+```bash
+python3 scripts/smoke_test.py
+```
+
 ### 初始化任务目录
 ```bash
 python3 scripts/browser_ops_orchestrator.py init assets/example_profiles/hackernews-browser.json /tmp/browser_ops_demo 3 2 true

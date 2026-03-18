@@ -14,8 +14,9 @@
 </p>
 
 <p align="center">
-  <b>不是又一个“会点按钮、会抓点数据、炸了就重跑”的浏览器脚本仓库。</b><br/>
-  <b>这是一个专门为 OpenClaw 打造的 Browser Operations Platform。🔥</b>
+  <b>不是浏览器脚本集合，不是一次性自动化玩具，不是炸了就重跑的 Demo 仓库。</b><br/>
+  <b>这是一个专门为 OpenClaw 打造的 Browser Workflow Kernel。🔥</b><br/>
+  <b>能理解页面、选择路线、携带策略、优雅交接、自动推进、失败恢复。</b>
 </p>
 
 ---
@@ -213,6 +214,27 @@ Browser Ops 不是这样。
 - 满足条件时自动恢复或自动关单
 
 这四个内核加起来，才构成 Browser Ops 的真实机制。🧠
+
+---
+
+## 一眼看懂它为什么猛 ⚡
+
+因为它不是只解决“浏览器能不能自动化”，而是在解决更本质的事：
+
+- **任务开始前**：先理解页面，不盲点 🧠
+- **任务推进时**：按 route 和 action policy 执行，不乱跑 ⚙️
+- **任务交接时**：有 handoff payload，不掉上下文 📦
+- **任务失败后**：有 incident / recovery / retry budget，不靠运气 ♻️
+
+一句话：
+
+> **Browser Ops for OpenClaw = 浏览器任务的工作流内核，而不是几个自动化脚本。**
+
+---
+
+## Demo 展示 👀
+
+- [Demo Showcase](docs/demo-showcase.md)
 
 ---
 

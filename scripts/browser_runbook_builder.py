@@ -21,6 +21,11 @@ def _effective_route(orch: dict) -> str:
     return intel.get("recommendedRoute") or orch.get("route", "browser")
 
 
+def _connectivity_ready(orch: dict, td: Path) -> bool:
+    report = load_json(str(td / "connectivity_report.json"), default={})
+    return bool(report.get("ok")) and report.get("inputUrl") == orch.get("startUrl", "")
+
+
 def build_runbook(task_dir: str) -> dict:
     td = Path(task_dir)
     orch = load_json(str(td / "orchestrator_state.json"), default={})
@@ -44,6 +49,16 @@ def build_runbook(task_dir: str) -> dict:
         },
         "steps": [],
     }
+
+    if not _connectivity_ready(orch, td):
+        runbook["headline"] = "Connectivity check required"
+        runbook["steps"] = [
+            {
+                "kind": "exec",
+                "command": f"python3 skills/browser-ops/scripts/site_connectivity_adapter.py {orch.get('startUrl', '')} {orch.get('profilePath', '')} {td}"
+            }
+        ]
+        return runbook
 
     if phase == "intelligence":
         start_url = orch.get("startUrl", "")

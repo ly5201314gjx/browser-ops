@@ -20,6 +20,8 @@ Site Connectivity Adapter 是 Browser Ops 的站点连通性适配层。
 3. 用户自有代理（通过环境变量）尝试
 4. retries + backoff
 5. 输出 `connectivity_report.json`
+6. 可接入 orchestrator / runbook，作为正式前置检查步骤
+7. connectivity failure 可进入 recovery system 分类与恢复规划
 
 ## 配置
 在 profile 中可设置：

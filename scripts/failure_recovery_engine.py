@@ -37,6 +37,8 @@ def classify_failure(stage: str, reason: str) -> str:
     s = (stage or "").lower()
     if "browser boundary" in r or "interrupted browser slice" in r:
         return "browser-boundary-interruption"
+    if "connectivity" in r or "network" in r or "proxy" in r or "timeout" in r or "dns" in r:
+        return "connectivity-failure"
     if "snapshot" in r or "artifact" in r or "missing" in r:
         return "missing-artifact"
     if "parser" in r or "extract" in r:
@@ -56,6 +58,7 @@ def register_failure(task_dir: str, stage: str, reason: str, url: str = "", snap
     category = classify_failure(stage, reason)
     retry_budget_map = {
         "browser-boundary-interruption": 3,
+        "connectivity-failure": 2,
         "missing-artifact": 2,
         "parser-failure": 2,
         "route-mismatch": 1,
@@ -65,6 +68,7 @@ def register_failure(task_dir: str, stage: str, reason: str, url: str = "", snap
     }
     cooldown_map = {
         "browser-boundary-interruption": 15,
+        "connectivity-failure": 30,
         "missing-artifact": 20,
         "parser-failure": 30,
         "route-mismatch": 60,

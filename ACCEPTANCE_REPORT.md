@@ -91,6 +91,8 @@
 - 用户自有代理尝试（通过环境变量）
 - retries + backoff
 - 输出 connectivity_report.json
+- 进入 orchestrator / runbook 主流程作为前置检查
+- connectivity failure 进入 recovery system 分类与恢复规划
 
 ### 安全边界
 - 不绕过访问控制
@@ -103,6 +105,16 @@
   - direct 模式成功
   - status = 200
   - elapsed ≈ 0.8s
+- orchestrator 在 connectivity 未完成前：
+  - `next_action = connectivity_check`
+  - runbook headline = `Connectivity check required`
+- connectivity 成功后：
+  - orchestrator 恢复为 intelligence bootstrap 正常流程
+- 对失败域名 `http://nonexistent.invalid` 的故障模拟：
+  - failure category = `connectivity-failure`
+  - retryBudget = 2
+  - cooldownSeconds = 30
+  - recovery plan 正确建议 `retry-last-failed-slice`
 
 ## 结论
 ### 通过项

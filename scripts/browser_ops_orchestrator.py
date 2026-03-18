@@ -15,6 +15,11 @@ def _effective_route(orch: dict) -> str:
     return intel.get("recommendedRoute") or orch.get("route", "browser")
 
 
+def _connectivity_ready(orch: dict, task_dir: Path) -> bool:
+    report = load_json(str(task_dir / "connectivity_report.json"), default={})
+    return bool(report.get("ok")) and report.get("inputUrl") == orch.get("startUrl", "")
+
+
 def init_run(profile_path: str, task_dir: str, detail_limit: int = 5, page_limit: int | None = None, intelligence_first: bool = True) -> dict:
     profile = load_profile(profile_path)
     td = Path(task_dir)
@@ -29,8 +34,9 @@ def init_run(profile_path: str, task_dir: str, detail_limit: int = 5, page_limit
         "pageLimit": page_limit or profile.get("maxPages", 1),
         "detailLimit": detail_limit,
         "currentPhase": "intelligence" if intelligence_first else "list",
-        "nextAction": "open_start_url_for_intelligence" if intelligence_first else "open_start_url",
+        "nextAction": "check_connectivity" if intelligence_first else "check_connectivity",
         "startUrl": profile.get("startUrls", [""])[0],
+        "connectivity": profile.get("connectivity", {}),
         "listPagesCompleted": 0,
         "detailsCompleted": 0,
         "notes": [],
@@ -44,12 +50,14 @@ def status(task_dir: str) -> dict:
     orch = load_json(str(td / "orchestrator_state.json"), default={})
     runtime = load_json(str(td / "browser_runtime.json"), default={})
     batch = load_json(str(td / "detail_batch_state.json"), default={})
+    connectivity = load_json(str(td / "connectivity_report.json"), default={})
     return {
         "ok": True,
         "effectiveRoute": _effective_route(orch),
         "orchestrator": orch,
         "browserRuntime": runtime,
         "detailBatch": batch,
+        "connectivity": connectivity,
     }
 
 
@@ -62,6 +70,15 @@ def next_action(task_dir: str) -> dict:
     phase = orch.get("currentPhase", "list")
     effective_route = _effective_route(orch)
     intel = orch.get("intelligence", {})
+
+    if not _connectivity_ready(orch, td):
+        return {
+            "ok": True,
+            "phase": phase,
+            "action": "connectivity_check",
+            "url": orch.get("startUrl", ""),
+            "instruction": "Run site_connectivity_adapter.py before continuing so the workflow has a validated connectivity strategy."
+        }
 
     if phase == "intelligence":
         if not intel:

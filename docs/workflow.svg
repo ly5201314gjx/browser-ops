@@ -1,0 +1,15 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="520" fill="#0B1020"/>
+  <text x="60" y="60" fill="white" font-size="36" font-family="Arial, sans-serif" font-weight="700">Browser Ops Workflow</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="60" y="180" width="180" height="90" rx="18" fill="#7C3AED"/><text x="95" y="235" fill="white" font-size="28" font-weight="700">intelligence</text>
+    <rect x="290" y="180" width="140" height="90" rx="18" fill="#0EA5E9"/><text x="327" y="235" fill="white" font-size="28" font-weight="700">list</text>
+    <rect x="480" y="180" width="220" height="90" rx="18" fill="#F59E0B"/><text x="506" y="235" fill="white" font-size="28" font-weight="700">detail-queue</text>
+    <rect x="750" y="180" width="160" height="90" rx="18" fill="#22C55E"/><text x="788" y="235" fill="white" font-size="28" font-weight="700">detail</text>
+    <rect x="960" y="180" width="160" height="90" rx="18" fill="#DC2626"/><text x="998" y="235" fill="white" font-size="28" font-weight="700">report</text>
+  </g>
+  <g stroke="#E8ECFF" stroke-width="4">
+    <path d="M240 225H290"/><path d="M430 225H480"/><path d="M700 225H750"/><path d="M910 225H960"/>
+  </g>
+  <text x="110" y="370" fill="#AAB6E8" font-size="24" font-family="Arial, sans-serif">autopilot handles non-browser slices • browser boundary triggers handoff • recovery handles failures</text>
+</svg>

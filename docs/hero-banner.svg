@@ -1,0 +1,16 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="640" fill="#0B1020"/>
+  <rect x="60" y="60" width="1160" height="520" rx="28" fill="#11182D" stroke="#2A355A"/>
+  <circle cx="180" cy="170" r="72" fill="#7C3AED" fill-opacity="0.18"/>
+  <circle cx="1070" cy="470" r="96" fill="#22C55E" fill-opacity="0.12"/>
+  <text x="110" y="180" fill="white" font-size="64" font-family="Arial, sans-serif" font-weight="700">Browser Ops for OpenClaw</text>
+  <text x="112" y="236" fill="#AAB6E8" font-size="26" font-family="Arial, sans-serif">Intelligence · Action Policy · Handoff · Autopilot · Recovery</text>
+  <text x="112" y="318" fill="#E8ECFF" font-size="34" font-family="Arial, sans-serif" font-weight="700">Not just browser automation.</text>
+  <text x="112" y="366" fill="#E8ECFF" font-size="34" font-family="Arial, sans-serif" font-weight="700">A workflow kernel built for OpenClaw.</text>
+  <rect x="112" y="420" width="220" height="54" rx="14" fill="#7C3AED"/>
+  <text x="145" y="455" fill="white" font-size="24" font-family="Arial, sans-serif" font-weight="700">OpenClaw Native</text>
+  <rect x="352" y="420" width="250" height="54" rx="14" fill="#0EA5E9"/>
+  <text x="392" y="455" fill="white" font-size="24" font-family="Arial, sans-serif" font-weight="700">Route-Aware Core</text>
+  <rect x="622" y="420" width="260" height="54" rx="14" fill="#22C55E"/>
+  <text x="662" y="455" fill="white" font-size="24" font-family="Arial, sans-serif" font-weight="700">Incident Recovery</text>
+</svg>

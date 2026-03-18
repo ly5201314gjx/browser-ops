@@ -1,355 +1,334 @@
-# Browser Ops 🚀🌐
+# Browser Ops for OpenClaw 🚀
 
-[![OpenClaw](https://img.shields.io/badge/OpenClaw-Browser%20Platform-7C3AED)](#) [![Route-Aware](https://img.shields.io/badge/Route-Aware-Intelligence%20Driven-0EA5E9)](#) [![Recovery](https://img.shields.io/badge/Recovery-Incident%20Aware-22C55E)](#) [![Human-in-the-Loop](https://img.shields.io/badge/HITL-First%20Class-F59E0B)](#)
+<p align="center">
+  <img src="docs/hero-banner.svg" alt="Browser Ops Hero Banner" width="100%" />
+</p>
 
-> 一个把 **浏览器自动化、结构化采集、人机协同、动作策略、失败恢复** 真正揉成“平台内核”的 OpenClaw Browser Operations Platform。
+<p align="center">
+  <a href="https://github.com/ly5201314gjx/browser-ops/stargazers"><img src="https://img.shields.io/github/stars/ly5201314gjx/browser-ops?style=for-the-badge" /></a>
+  <a href="https://github.com/ly5201314gjx/browser-ops/releases"><img src="https://img.shields.io/github/v/release/ly5201314gjx/browser-ops?style=for-the-badge" /></a>
+  <a href="https://github.com/ly5201314gjx/browser-ops/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ly5201314gjx/browser-ops?style=for-the-badge" /></a>
+  <img src="https://img.shields.io/badge/OpenClaw-Native-7C3AED?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/HITL-First%20Class-F59E0B?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Recovery-Incident%20Aware-22C55E?style=for-the-badge" />
+</p>
 
-如果你想做的不只是“写几个 Playwright 脚本”，而是想要一个：
-
-- 能看懂页面 🧠
-- 能决定路线 🧭
-- 能产出 runbook 📋
-- 能半自动推进 ⚙️
-- 能做人机协同 🤝
-- 能在失败后体面恢复 ♻️
-
-那这个项目就是冲着这个目标狠狠干出来的。
-
----
-
-## ✨ 这玩意到底是什么？
-## 🎯 为什么它和普通 Playwright 项目不一样？
-
-很多浏览器项目到这里就结束了：
-- 能打开页面
-- 能点按钮
-- 能抓点数据
-- 一炸就靠人脑排查
-
-`browser-ops` 不满足于这个层次。
-
-它真正想做的是：
-
-### **把浏览器任务做成一个有内核、有边界、有恢复能力的工作流平台。**
-
-所以它不是单纯强调“自动化执行”，而是把这几件事全做成一套系统：
-- 先做 intelligence，再决定 route 🧠
-- 用 action policy 统一动作节奏与设备姿态 🎛️
-- 用 runbook / handoff payload 管理交接 📦
-- 用 autopilot 推进非 browser slice ⚙️
-- 用 recovery kernel 管理失败恢复 ♻️
-
-这就是它和普通 Playwright 项目最不一样的地方。
+<p align="center">
+  <b>不是又一个“会点按钮的浏览器脚本仓库”。</b><br/>
+  <b>这是一个专门为 OpenClaw 打造的 Browser Operations Platform：</b><br/>
+  intelligence、route selection、action policy、handoff、autopilot、failure recovery —— 全部进内核。🔥
+</p>
 
 ---
 
-## 🗺️ 架构与工作流
+## 中文介绍 🇨🇳
 
-- [架构图（文字版）](docs/architecture.md)
-- [工作流图（文字版）](docs/workflow.md)
+很多浏览器自动化项目，做到最后还是停在这几步：
+- 打开页面
+- 点按钮
+- 抓一点数据
+- 爆了就手工重来
 
----
+**Browser Ops 不想停在这里。**
 
+它要做的是一件更硬核、更像平台内核的事：
 
-`browser-ops` 不是单点爬虫，不是一次性脚本，也不是“点点点自动化小玩具”。
+> **把浏览器任务，做成 OpenClaw 内部一个可观察、可恢复、可交接、可策略化的工作流系统。**
 
-它的定位是：
+所以这个项目不是“几段自动化脚本”，而是一个为 **OpenClaw** 专门打造的 **Browser Operations Platform**。它把复杂浏览器任务拆成 6 层：
 
-### **OpenClaw Browser Operations Platform**
+1. **Intelligence** — 先看懂页面，再决定怎么走
+2. **Orchestration** — 用 phase + route 驱动完整工作流
+3. **Action Policy** — 统一设备姿态、动作节奏、触控参数、随机扰动边界
+4. **Execution** — list / detail / pagination / batch detail 真执行
+5. **Handoff** — browser boundary、human-in-the-loop、handoff payload 全是一等公民
+6. **Recovery** — incident registry、recovery plan、retry budget、cooldown、auto-resume hooks
 
-一个围绕浏览器工作流的**平台级技能 / 内核层系统**，核心目标是把复杂浏览器任务拆成：
-
-1. **页面侦察（intelligence）**
-2. **路线决策（route selection）**
-3. **动作策略（action policy）**
-4. **执行与交接（runbook / handoff）**
-5. **自动推进（autopilot）**
-6. **失败恢复（recovery system）**
-
-最后形成一个可恢复、可观察、可扩展、可展示、可复用的浏览器工作流平台。🔥
-
----
-
-## 💥 项目亮点
-
-### 1. Site Intelligence：先看懂页面，再决定怎么干
-- 判断页面更像 list / detail / login / search / dashboard
-- 检测 login / MFA / captcha / approval checkpoints
-- 给出 `recommendedRoute`
-- 产出 profile draft
-
-### 2. Intelligence-Aware Orchestrator：分析结果直接影响执行路径
-- intelligence-first 初始化
-- `effectiveRoute` 驱动 browser / http / human
-- phase 化推进：`intelligence → list → detail-queue → detail → report`
-
-### 3. Action Policy Layer：不是只会做，还知道怎么更稳地做
-- device profiles（desktop / mobile / tablet）
-- interaction timing / touch rhythm / motion / bounded randomization
-- profile strategy fields：
-  - `preferredDevice`
-  - `navigationStyle`
-  - `riskTolerance`
-  - `checkpointPolicy`
-  - `interactionPolicy`
-
-### 4. Human-Collab Real-Device Mode：人机协同不是口头说说
-- `handoff_packet.json`
-- `browser_handoff_payload.json`
-- device-aware interaction plan
-- protected checkpoint 停靠与 resume
-
-### 5. Autopilot Mode：自动推进非浏览器胶水工作
-- 自动 rebuild runbook
-- 自动执行非-browser步骤
-- 遇 browser boundary 优雅停下
-- 保留 blockedAfterBrowser 语义
-
-### 6. Failure Recovery System：失败不是结束，而是另一条工作流
-- incident registry
-- recovery state / plan / runbook
-- failure classification
-- retry budgets / cooldown
-- auto-resolve hooks
+这玩意的目标，不是让浏览器“勉强自动化”，而是让 OpenClaw 在浏览器任务上拥有**真正的平台级内核能力**。⚡
 
 ---
 
-# 🧠 真实算法机制介绍
+## English Intro 🇺🇸
 
-## 一、路由决策内核（Routing Kernel）
+**Browser Ops for OpenClaw** is not just another browser automation repo.
 
-`browser-ops` 会先通过 `site_intelligence.py` 分析页面，再让 orchestrator 用 `effectiveRoute` 驱动后续行为。
+It is a browser workflow kernel designed specifically for **OpenClaw**, built around:
+- page intelligence
+- route-aware orchestration
+- action-policy injection
+- browser handoff payloads
+- non-browser autopilot
+- incident-aware failure recovery
 
-### 路由类型
+The goal is simple:
+
+> Turn browser tasks into a recoverable, inspectable, handoff-friendly, strategy-driven platform workflow.
+
+---
+
+## Why this hits different 💥
+
+### Ordinary browser repos usually stop at:
+- open page
+- click button
+- scrape data
+- crash
+- pray 🙃
+
+### Browser Ops goes further:
+- understand the page first 🧠
+- select the right route before execution 🧭
+- carry action policy into plans and runbooks 🎛️
+- stop cleanly at browser boundaries ✋
+- hand off to human/agent with structured payloads 📦
+- recover from incidents with budgets, cooldowns, and recovery runbooks ♻️
+
+**That difference is the whole project.**
+
+---
+
+## 7 个升级点，这次全上了 ✅
+
+### 1. Hero Banner
+- 已加 `docs/hero-banner.svg`
+- 首页第一屏直接拉满项目气质
+
+### 2. Quickstart Demo
+- 首页增加快速体验路径
+- 不废话，直接让人知道怎么跑
+
+### 3. Bilingual README
+- 中英双语，不只给中文圈看
+- 更适合扩散与分享
+
+### 4. Roadmap / Versioned Milestones
+- 增加路线图与版本里程碑
+- 告诉别人这不是一次性 demo
+
+### 5. Architecture / Workflow 图
+- 已补 SVG：
+  - `docs/architecture.svg`
+  - `docs/workflow.svg`
+- 也保留文字版说明
+
+### 6. Release v0.1.0
+- 会发布首个 release
+- 给仓库一个正式起点
+
+### 7. 更炸的 About / Topics / Repo Packaging
+- 重写 description
+- 优化 topics
+- 让仓库首页第一印象更像成熟项目
+
+---
+
+## Quickstart Demo ⚡
+
+> 最适合在 **OpenClaw** 环境中使用。
+
+### 1) 准备一个 site profile
+用现成示例：
+- `assets/example_profiles/hackernews-browser.json`
+
+### 2) 初始化任务目录
+```bash
+python3 scripts/browser_ops_orchestrator.py init assets/example_profiles/hackernews-browser.json /tmp/browser_ops_demo 3 2 true
+```
+
+### 3) 生成 runbook
+```bash
+python3 scripts/browser_runbook_builder.py /tmp/browser_ops_demo
+```
+
+### 4) 自动推进非 browser 部分
+```bash
+python3 scripts/autopilot_tick.py /tmp/browser_ops_demo
+```
+
+### 5) 浏览器切片交接
+```bash
+python3 scripts/browser_handoff_payload.py /tmp/browser_ops_demo
+```
+
+### 6) 失败后恢复
+```bash
+python3 scripts/failure_recovery_engine.py plan /tmp/browser_ops_demo
+python3 scripts/recovery_runbook_builder.py /tmp/browser_ops_demo
+```
+
+---
+
+## 真实算法介绍（简洁版）🧠
+
+### 1. Route Kernel
+先通过 `site_intelligence.py` 分析页面，再生成 `recommendedRoute`，让 orchestrator 决定走：
 - `http`
 - `browser`
 - `hybrid`
 - `human`
 
-### 决策原则
-- 能 HTTP 就别硬上 browser
-- 能 browser 就别做脏绕过
-- 碰到 login / MFA / captcha / approval，就切 human-in-the-loop
-- intelligence 不是旁路报告，而是直接影响 runbook / route / phase
-
----
-
-## 二、动作策略内核（Action Policy Kernel）
-
-这部分不是“绕风控”，而是**合规的动作参数真实化与一致化**。
-
-### 输入层
+### 2. Action Policy Kernel
+把：
 - device profile
 - site profile strategy fields
-- human mode policy
-- interaction policy defaults / overrides
+- human mode
+- interaction defaults / overrides
 
-### 输出层
-统一生成 `action_policy.json`，内容包括：
-- `device`
-- `navigationStyle`
-- `riskTolerance`
-- `checkpointPolicy`
-- `interactionPolicy`
-
-### 作用
-再把这些参数注入：
+合并成 `action_policy.json`，再注入：
 - `browser_plan.json`
 - `runbook.json`
 - `handoff_packet.json`
 - `browser_handoff_payload.json`
 
-### 典型参数
-- `pageSettleMs`
-- `elementConfirmPauseMs`
-- `betweenActionsMs`
-- `downDelayMs`
-- `multiTouchGapMs`
-- `swipeDurationMs`
-- `inertia`
-- `timeJitterPct`
+### 3. Browser Boundary Model
+遇到 browser-controlled slice 时：
+- autopilot 停止推进
+- 保留 `pendingBrowserSteps`
+- 标记 `blockedAfterBrowser`
+- 生成 handoff payload
+
+### 4. Recovery Kernel
+失败后不只记日志，而是：
+- 注册 incident
+- 自动分类 category
+- 分配 retry budget / cooldown
+- 产出 recovery plan
+- 生成 recovery runbook
+- 条件满足时触发 auto-resolve hook
+
+这四个内核叠在一起，才构成 Browser Ops 的真实机制。⚙️
 
 ---
 
-## 三、自动推进内核（Autopilot Kernel）
+## 核心能力总览
 
-Autopilot 不假装“全自动浏览器”，而是做更聪明的事：
+### Site Intelligence
+- classify page types
+- detect checkpoints
+- recommend route
+- bootstrap profiles
 
-### 它会自动做
-- rebuild runbook
-- 执行所有非-browser步骤
-- 生成 browser handoff payload
-- 停在 browser boundary
-
-### 它不会乱做
-- 不伪造浏览器动作已经完成
-- 不在 browser step 未完成时继续执行依赖步骤
-
-这意味着系统能清楚区分：
-- **可自动推进部分**
-- **必须交接的人/浏览器切片**
-
----
-
-## 四、失败恢复内核（Recovery Kernel）
-
-这是整个项目最有“平台感”的部分之一。💣
-
-### 不是简单记日志，而是：
-1. 把失败登记成 incident
-2. 自动分类 failure category
-3. 为不同类型分配 retry budget / cooldown
-4. 根据当前 workflow state 构建 recovery plan
-5. 产出 recovery runbook
-6. 条件满足时触发 auto-resolve hook
-
-### 当前支持的失败分类
-- `browser-boundary-interruption`
-- `missing-artifact`
-- `parser-failure`
-- `route-mismatch`
-- `detail-batch-failure`
-- `report-generation-failure`
-- `unknown-failure`
-
-### 当前支持的恢复动作
-- `resume-browser-slice`
-- `retry-last-failed-slice`
-- `human-review`
-- `resume-detail-index`
-- `resume-list-phase`
-- `rebuild-report`
-- `auto-resolve-incident`
-
-这让 browser-ops 不只是“能跑”，而是**炸了以后还知道怎么优雅恢复**。♻️
-
----
-
-# 🧱 真实内核分层
-
-## Layer 1 — Intelligence
-- 页面识别
-- route recommendation
-- profile bootstrapping
-
-## Layer 2 — Orchestration
-- phase state machine
-- effectiveRoute
+### Intelligence-Aware Orchestrator
+- phase-driven workflow
+- route-aware decisions
 - next-action generation
 
-## Layer 3 — Action Policy
+### Action Policy Layer
 - device posture
-- navigation style
-- interaction timing / motion
+- timing / motion policy
+- risk tolerance
 - checkpoint policy
 
-## Layer 4 — Execution
-- list processing
-- detail enrichment
-- pagination loop
-- batch detail queue
-
-## Layer 5 — Handoff
-- human handoff packet
+### Human-Collab / Real-Device Mode
+- handoff packet
 - browser handoff payload
 - browser boundary semantics
+- resume flow
 
-## Layer 6 — Recovery
+### Autopilot Mode
+- execute non-browser glue work
+- stop at browser boundary
+- preserve blocked downstream steps
+
+### Failure Recovery System
 - incident registry
+- recovery plan / runbook
 - retry budgets
 - cooldown windows
-- recovery runbooks
 - auto-resume hooks
 
 ---
 
-# 🛡️ 安全边界
+## 架构与工作流图 🗺️
 
-这个项目**明确不做**：
-- captcha bypass
-- MFA/access-control bypass
-- evading platform security protections
-- pretending to be a human to defeat protections
-
-遇到这些情况，正确路线永远是：
-- 停下
-- 存档
-- handoff
-- resume
-
-这不是怂，这是平台级系统该有的边界感。✅
+- [Architecture Diagram (SVG)](docs/architecture.svg)
+- [Workflow Diagram (SVG)](docs/workflow.svg)
+- [Architecture Notes](docs/architecture.md)
+- [Workflow Notes](docs/workflow.md)
 
 ---
 
-# 📦 目录结构
+## 为什么它是 OpenClaw 专用的？
+
+因为这个项目从设计开始就不是“通用浏览器脚本合集”，而是围绕 **OpenClaw 的技能体系、runbook 模型、browser tool、human-in-the-loop、session workflow** 来构建的。
+
+换句话说：
+
+> **这不是把浏览器自动化硬塞进 OpenClaw。**
+> **这是为 OpenClaw 原生长出来的一套浏览器工作流内核。**
+
+这也是它最值钱的地方。🌊
+
+---
+
+## 安全边界 🛡️
+
+这个项目明确不做：
+- captcha bypass
+- MFA / access-control bypass
+- evading platform security protections
+- pretending to be a human to defeat protections
+
+碰到这些情况，正确路径永远是：
+- stop
+- capture artifacts
+- handoff
+- resume
+
+边界感不是束缚，是平台可信度的一部分。✅
+
+---
+
+## Roadmap 🛣️
+
+### v0.1.0
+- intelligence-aware orchestrator
+- action policy layer
+- human-collab handoff
+- browser boundary model
+- failure recovery system
+
+### v0.2.0
+- site-specific recovery heuristics
+- stronger parser overrides
+- browser slice resume hooks
+- richer recovery lineage
+
+### v0.3.0
+- more showcase profiles
+- visual architecture dashboards
+- stronger hybrid route support
+- policy-aware browser execution adapters
+
+---
+
+## Repo Structure
 
 ```text
 browser-ops/
 ├── SKILL.md
+├── README.md
+├── docs/
 ├── assets/
 ├── references/
 └── scripts/
 ```
 
-你会看到几类关键文件：
-
-### 核心脚本
-- `site_intelligence.py`
-- `browser_ops_orchestrator.py`
-- `browser_runbook_builder.py`
-- `autopilot_tick.py`
-- `action_policy_engine.py`
-- `browser_handoff_payload.py`
-- `failure_recovery_engine.py`
-- `recovery_runbook_builder.py`
-
-### 关键文档
-- `references/intelligence-first-flow.md`
-- `references/action-policy-layer.md`
-- `references/browser-handoff-payload.md`
-- `references/failure-recovery-system.md`
-
 ---
 
-# 🚀 为什么这个项目可能让人想点 Star？
+## Final Words ✨
 
-因为它想解决的不是“浏览器自动化能不能点按钮”，而是：
+如果你也受够了这些东西：
+- 只能 demo 一次的浏览器脚本
+- 一爆就只能重跑的自动化任务
+- 没状态、没恢复、没交接的工作流
 
-> **怎么把浏览器任务做成真正可运营、可恢复、可交接、可观察的平台系统。**
+那你大概率会明白 Browser Ops 的方向为什么值得继续狠狠干。
 
-很多项目停在“脚本能跑”。
+**Browser Ops for OpenClaw**，不是为了“再多一个自动化仓库”。
 
-这个项目往前多走了几步：
-- 让 intelligence 进入决策层
-- 让 action policy 进入 plan / runbook / handoff
-- 让 autopilot 知道 browser boundary
-- 让 failure recovery 成为正式内核
+而是为了：
 
-这几步一叠起来，味道就不一样了。✨
+> **把浏览器任务，做成真正可运行、可恢复、可交接、可进化的平台内核。**
 
----
-
-# ⚡ 快速开始
-
-> 这是 OpenClaw skill 形态项目，最适合在 OpenClaw 环境中使用。
-
-## 基本流程
-1. 准备站点 profile
-2. 初始化 task dir
-3. 跑 orchestrator / runbook
-4. 用 browser tool 完成 browser slice
-5. 用 autopilot 推进非-browser slice
-6. 出问题就走 recovery plan / recovery runbook
-
----
-
-# 📣 最后
-
-如果你也烦透了那些：
-- 只能 demo 一次的脚本
-- 没状态、没恢复、没交接的浏览器自动化
-- 一炸就得人脑从头排查的工作流
-
-那 `browser-ops` 这条路线，可能会让你眼前一亮。👀
-
-欢迎 star / fork / issue / 一起把这玩意继续狠狠干大。🔥🔥🔥
+如果这条路线也戳到你了，欢迎 ⭐ Star / Fork / Issue / Discussion。🔥🔥🔥

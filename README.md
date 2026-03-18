@@ -1,5 +1,7 @@
 # Browser Ops 🚀🌐
 
+[![OpenClaw](https://img.shields.io/badge/OpenClaw-Browser%20Platform-7C3AED)](#) [![Route-Aware](https://img.shields.io/badge/Route-Aware-Intelligence%20Driven-0EA5E9)](#) [![Recovery](https://img.shields.io/badge/Recovery-Incident%20Aware-22C55E)](#) [![Human-in-the-Loop](https://img.shields.io/badge/HITL-First%20Class-F59E0B)](#)
+
 > 一个把 **浏览器自动化、结构化采集、人机协同、动作策略、失败恢复** 真正揉成“平台内核”的 OpenClaw Browser Operations Platform。
 
 如果你想做的不只是“写几个 Playwright 脚本”，而是想要一个：
@@ -16,6 +18,38 @@
 ---
 
 ## ✨ 这玩意到底是什么？
+## 🎯 为什么它和普通 Playwright 项目不一样？
+
+很多浏览器项目到这里就结束了：
+- 能打开页面
+- 能点按钮
+- 能抓点数据
+- 一炸就靠人脑排查
+
+`browser-ops` 不满足于这个层次。
+
+它真正想做的是：
+
+### **把浏览器任务做成一个有内核、有边界、有恢复能力的工作流平台。**
+
+所以它不是单纯强调“自动化执行”，而是把这几件事全做成一套系统：
+- 先做 intelligence，再决定 route 🧠
+- 用 action policy 统一动作节奏与设备姿态 🎛️
+- 用 runbook / handoff payload 管理交接 📦
+- 用 autopilot 推进非 browser slice ⚙️
+- 用 recovery kernel 管理失败恢复 ♻️
+
+这就是它和普通 Playwright 项目最不一样的地方。
+
+---
+
+## 🗺️ 架构与工作流
+
+- [架构图（文字版）](docs/architecture.md)
+- [工作流图（文字版）](docs/workflow.md)
+
+---
+
 
 `browser-ops` 不是单点爬虫，不是一次性脚本，也不是“点点点自动化小玩具”。
 

@@ -264,11 +264,15 @@ bash demo.sh
 ### 环境自检
 ```bash
 python3 scripts/doctor.py
+# 或
+browser-ops doctor
 ```
 
 ### Smoke Test
 ```bash
 python3 scripts/smoke_test.py
+# 或
+browser-ops smoke-test
 ```
 
 ### 初始化任务目录
@@ -318,6 +322,17 @@ python3 scripts/recovery_runbook_builder.py /tmp/browser_ops_demo
 > **为 OpenClaw 原生长出来的一套 Browser Operations 内核。**
 
 这点非常重要，也正是这个仓库最值钱的地方之一。✨
+
+### 小白怎么拿给自己的龙虾？
+其实很简单：
+
+1. 克隆这个仓库
+2. 跑 `bash install.sh`
+3. 跑 `browser-ops doctor` 确认环境通过
+4. 跑 `browser-ops demo` 感受一套完整产物
+5. 保持当前目录结构不变，让 OpenClaw 能读取 `SKILL.md`
+
+只要 `SKILL.md + assets + references + scripts` 这套结构完整，OpenClaw 就能更自然地把它识别成一个技能项目。🦞
 
 ---
 

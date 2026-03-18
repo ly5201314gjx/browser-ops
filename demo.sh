@@ -34,3 +34,8 @@ echo "  - $TASK_DIR/action_policy.json"
 echo "  - $TASK_DIR/browser_plan.json"
 echo "  - $TASK_DIR/runbook.json"
 echo "  - $TASK_DIR/browser_handoff_payload.json"
+echo
+echo "如果你想把它交给自己的 OpenClaw 使用："
+echo "1) 保持仓库目录结构完整（SKILL.md / assets / references / scripts）"
+echo "2) 让 OpenClaw 能读到这个项目目录"
+echo "3) 以 browser-ops skill 方式调用对应脚本或参考 SKILL.md"

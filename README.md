@@ -244,6 +244,7 @@ Browser Ops 不是这样。
 - [工作流图（SVG）](docs/workflow.svg)
 - [架构说明](docs/architecture.md)
 - [工作流说明](docs/workflow.md)
+- [OpenClaw 技能安装说明](docs/openclaw-skill-install.md)
 
 ---
 
@@ -259,6 +260,8 @@ bash install.sh
 ### 一键 Demo
 ```bash
 bash demo.sh
+# 或
+browser-ops demo
 ```
 
 ### 环境自检
@@ -333,6 +336,19 @@ python3 scripts/recovery_runbook_builder.py /tmp/browser_ops_demo
 5. 保持当前目录结构不变，让 OpenClaw 能读取 `SKILL.md`
 
 只要 `SKILL.md + assets + references + scripts` 这套结构完整，OpenClaw 就能更自然地把它识别成一个技能项目。🦞
+
+### 打包交付
+如果你想把这个项目作为交付包发给别人或者留给自己的 OpenClaw 环境：
+
+```bash
+python3 scripts/package_release.py
+```
+
+它会在 `dist/` 下生成：
+- zip 包
+- tar.gz 包
+
+这样小白拿到包以后，解压 → `bash install.sh` → `browser-ops doctor` 就能更轻松上手。
 
 ---
 

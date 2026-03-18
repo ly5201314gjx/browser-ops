@@ -2,8 +2,8 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
-TASK_DIR="/tmp/browser_ops_demo_release"
-PROFILE="$ROOT/assets/example_profiles/hackernews-browser.json"
+PROFILE="${1:-$ROOT/assets/example_profiles/hackernews-browser.json}"
+TASK_DIR="${2:-/tmp/browser_ops_demo_release}"
 
 echo "[1/6] Cleaning demo dir..."
 rm -rf "$TASK_DIR"
@@ -28,6 +28,7 @@ python3 "$ROOT/scripts/browser_handoff_payload.py" "$TASK_DIR" >/dev/null
 
 echo
 echo "✅ Demo prepared successfully."
+echo "Profile: $PROFILE"
 echo "Task dir: $TASK_DIR"
 echo "Artifacts:"
 echo "  - $TASK_DIR/action_policy.json"

@@ -5,7 +5,22 @@ description: Browser automation and web extraction platform for OpenClaw. Use wh
 
 # Browser Ops
 
-Build and run browser automation and crawling workflows in a reusable, profile-driven, observable way.
+Build and run browser automation, crawling, deep site analysis, handoff, recovery, and autopilot workflows in a reusable, profile-driven, observable way.
+
+## Current platform shape
+
+Browser Ops is no longer just a browser automation skill. It is now an intelligence-driven browser operations platform with these major layers:
+
+- `browser_ops/core` — shared state/profile helpers
+- `browser_ops/orchestration` — route and workflow coordination
+- `browser_ops/intelligence` — page classification + intelligence bootstrap
+- `browser_ops/deep_analysis` — 8-dimensional deep site analysis
+- `browser_ops/policy` — interaction/action policy generation
+- `browser_ops/workflow` — plan, runbook, handoff, recovery-runbook builders
+- `browser_ops/execution` — list/detail processors, queue/batch drivers, crawlers
+- `browser_ops/control` — next-step, autopilot, state driver, human-mode, handoff packets
+- `browser_ops/recovery` — incident tracking and recovery planning
+- `browser_ops/support` — artifacts, device profiles, connectivity, reporting
 
 ## Core rules
 
@@ -14,6 +29,44 @@ Build and run browser automation and crawling workflows in a reusable, profile-d
 - When a workflow hits human verification or approval, pause and switch to human-in-the-loop.
 - Always save structured outputs, progress state, and failure artifacts when the task is non-trivial.
 - For repeatable site work, create or update a site profile instead of hardcoding one-off logic.
+- If deep analysis indicates high friction or human-gated flow, prefer conservative policy and human review over stubborn retries.
+
+## Core algorithm
+
+Browser Ops now follows a decision chain closer to a real operations platform:
+
+1. **Site Intelligence** → classify page / checkpoints / route
+2. **Deep Analysis** → inspect 8 dimensions and score difficulty
+3. **Action Policy** → tune timing / risk / checkpoint posture
+4. **Runbook / Handoff / Recovery** → produce resumable operator workflow
+5. **Autopilot / Next Step** → continue automatically when safe, pause for human when needed
+
+Prefer this mental model when using the skill: first understand the site, then decide the route, then decide how aggressively to operate it.
+
+## Deep Analysis (8 dimensions)
+
+For deep-dive website research, the skill can now generate `deep_analysis.json` and `deep_report.md` using eight dimensions:
+
+1. 页面结构（page structure）
+2. 数据流（data flow）
+3. 网络依赖（network dependencies）
+4. 状态机（state machine）
+5. 交互复杂度（interaction complexity）
+6. 安全与拦截（security barriers）
+7. 可提取性（extractability）
+8. 产品意图（product intent）
+
+This deep-analysis output already feeds into:
+- intelligence bootstrap
+- report builder
+- runbook generation
+- handoff packets
+- recovery planning
+- autopilot decisions
+- next-step advice
+- action policy tuning
+
+Use deep analysis when the user wants to deeply inspect a site, understand how it works, compare automation routes, estimate difficulty, or produce a reusable site strategy.
 
 ## Strategy router
 
@@ -53,6 +106,7 @@ Read these references as needed:
 - `references/runbook-mode.md` — how to emit product-like operator runbooks from workflow state.
 - `references/demo-showcase.md` — public demo and clean-package guidance for a more showcase-ready skill.
 - `references/site-intelligence.md` — deep inspection and profile-bootstrapping guidance for new sites.
+- `references/deep-analysis.md` — how 8-dimensional deep analysis works and where it feeds into the system.
 - `references/intelligence-first-flow.md` — how to run the orchestrator in intelligence-first mode for new sites.
 - `references/autopilot-mode.md` — how to auto-execute non-browser runbook steps while keeping browser actions explicit.
 - `references/device-profiles.md` — standard device profiles and interaction pacing for realistic browser workflows.
@@ -62,6 +116,8 @@ Read these references as needed:
 - `references/browser-handoff-payload.md` — how to package browser-controlled next steps with action-policy context for handoff.
 - `references/failure-recovery-system.md` — how incidents, recovery plans, and recovery runbooks work together.
 - `references/safety-boundaries.md` — safety and legal boundary rules for browser ops.
+
+## Deterministic scripts
 
 Use these scripts for deterministic work:
 
@@ -80,46 +136,46 @@ Use these scripts for deterministic work:
 - `scripts/browser_runbook_builder.py` — emit a concrete runbook.json for the next operator/agent slice.
 - `scripts/runbook_executor.py` — execute non-browser runbook steps automatically and stop at browser-controlled actions.
 - `scripts/autopilot_tick.py` — rebuild the current runbook and execute its non-browser portion as one autopilot tick.
-- `scripts/build_clean_package.py` — build a cleaner distributable skill package without demo logs or cache junk.
-- `scripts/hn_demo_setup.py` — generate a polished Hacker News demo task with orchestrator state and runbook.
 - `scripts/site_intelligence.py` — deeply inspect a snapshot to classify page type, detect checkpoints, suggest route, and find pagination/link candidates.
 - `scripts/profile_suggester.py` — turn site-intelligence output into a draft reusable site profile.
-- `scripts/intelligence_bootstrap.py` — push site-intelligence output into orchestrator state for intelligence-first onboarding.
+- `scripts/intelligence_bootstrap.py` — push site-intelligence + deep-analysis output into orchestrator state for intelligence-first onboarding.
 - `scripts/device_profile_manager.py` — assign a consistent desktop/mobile/tablet device profile to the current task.
 - `scripts/browser_human_mode.py` — enable human-assisted realistic interaction mode and generate an interaction plan.
 - `scripts/interaction_policy_engine.py` — build bounded, device-aware interaction timing/motion policies for compliant browser workflows.
-- `scripts/action_policy_engine.py` — merge site profile strategy, device profile, and human mode into a single action policy layer.
+- `scripts/action_policy_engine.py` — merge site profile strategy, device profile, human mode, and deep-analysis posture into one action policy layer.
 - `scripts/browser_handoff_payload.py` — package pending browser steps together with action-policy context for human/agent handoff.
 - `scripts/consent_prompt_rewriter.py` — rewrite a user-provided consent prompt into a more natural device-aware version while preserving compliance boundaries.
-- `scripts/failure_recovery_engine.py` — register incidents, track recovery state, and build recovery plans from workflow state.
+- `scripts/failure_recovery_engine.py` — register incidents, track recovery state, and build recovery plans from workflow state + deep-analysis signals.
 - `scripts/recovery_runbook_builder.py` — emit a recovery-focused runbook from current incidents and workflow state.
 - `scripts/handoff_packet.py` — create/resume human handoff packets for blocked or protected workflow steps.
 - `scripts/artifact_recorder.py` — persist artifact and failure evidence metadata for inspection and recovery.
-- `scripts/state_store.py` — local progress/checkpoint helpers.
-- `scripts/profile_runner.py` — load and validate site profiles.
-- `scripts/report_builder.py` — build markdown summaries from run artifacts.
+- `scripts/report_builder.py` — build markdown summaries from run artifacts and include deep-analysis summaries.
+- `scripts/deep_analysis_engine.py` — generate 8-dimensional deep-analysis output from a task snapshot.
+- `scripts/deep_report_builder.py` — build a human-readable report from `deep_analysis.json`.
 
 ## Standard workflow
 
 1. Clarify the task target:
    - site/app
-   - operation type: automate / extract / crawl / mixed
+   - operation type: automate / extract / crawl / mixed / deep research
    - login needed or not
    - expected output format
 
 2. Choose a route using `references/strategy.md`.
 
-3. If the site is recurring, create a profile from `references/site-profile-template.md`.
+3. If the site is new or strategically important, prefer intelligence-first mode and consider deep analysis early.
 
 4. Run the job:
    - save outputs to a task folder
    - persist checkpoint state
    - save failure screenshots/logs when useful
+   - emit deep-analysis artifacts when the task needs deeper understanding
 
 5. Summarize results:
    - what worked
    - what failed
    - what needs human action
+   - what deep analysis concluded
    - where artifacts were saved
 
 ## Output conventions
@@ -130,14 +186,9 @@ Prefer saving artifacts under a task-specific folder inside the workspace, for e
 - `logs/browser-ops/<task>/artifacts/`
 - `logs/browser-ops/<task>/state.json`
 - `logs/browser-ops/<task>/results.jsonl`
+- `logs/browser-ops/<task>/deep_analysis.json`
+- `logs/browser-ops/<task>/deep_report.md`
 - `logs/browser-ops/<task>/report.md`
-
-## Recovery rules
-
-- Retry only bounded times.
-- If selectors fail, attempt fallback selectors from the profile.
-- If rendering is unstable, downgrade or switch route.
-- If human verification appears, stop automation and request human help instead of trying to bypass it.
 
 ## For skill development
 

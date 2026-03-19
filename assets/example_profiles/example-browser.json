@@ -1,0 +1,34 @@
+{
+  "name": "example-browser",
+  "route": "browser",
+  "startUrls": ["https://example.com/"],
+  "allowedDomains": ["example.com"],
+  "requiresLogin": false,
+  "humanCheckpoints": {
+    "captcha": true,
+    "mfa": true,
+    "approval": true
+  },
+  "rateLimitMs": 800,
+  "maxPages": 3,
+  "list": {
+    "itemSelector": "a",
+    "titleSelector": "",
+    "linkSelector": "",
+    "summarySelector": "",
+    "nextPageSelector": "a[rel='next']"
+  },
+  "detail": {
+    "titleSelector": "h1",
+    "contentSelector": "body",
+    "timeSelector": "time",
+    "authorSelector": ".author",
+    "tagSelector": "a"
+  },
+  "extraction": {
+    "preferEmbeddedJson": true,
+    "preferNetworkDiscovery": true,
+    "captureScreenshotsOnFailure": true,
+    "outputFormat": "jsonl"
+  }
+}

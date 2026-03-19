@@ -1,0 +1,35 @@
+{
+  "name": "example-news",
+  "route": "browser",
+  "startUrls": ["https://example.com/news"],
+  "allowedDomains": ["example.com"],
+  "requiresLogin": false,
+  "humanCheckpoints": {
+    "captcha": true,
+    "mfa": true,
+    "approval": true
+  },
+  "rateLimitMs": 1200,
+  "maxPages": 5,
+  "list": {
+    "itemSelector": "article",
+    "fallbackItemSelectors": ["li", ".card"],
+    "titleSelector": "h2 a",
+    "linkSelector": "h2 a",
+    "summarySelector": "p",
+    "nextPageSelector": "a.next"
+  },
+  "detail": {
+    "titleSelector": "h1",
+    "contentSelector": "article",
+    "timeSelector": "time",
+    "authorSelector": ".author",
+    "tagSelector": ".tags a"
+  },
+  "extraction": {
+    "preferEmbeddedJson": true,
+    "preferNetworkDiscovery": true,
+    "captureScreenshotsOnFailure": true,
+    "outputFormat": "jsonl"
+  }
+}

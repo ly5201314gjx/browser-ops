@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "browser-ops-openclaw"
+version = "0.1.1"
+description = "Browser Ops for OpenClaw: intelligence, action policy, handoff, autopilot, and recovery as a browser workflow kernel"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Browser Ops Contributors" }
+]
+dependencies = []
+keywords = ["openclaw", "browser", "automation", "workflow", "handoff", "recovery"]
+
+[project.scripts]
+browser-ops = "browser_ops.cli:main"
+
+[tool.setuptools]
+packages = [
+  "browser_ops",
+  "browser_ops.core",
+  "browser_ops.orchestration",
+  "browser_ops.intelligence",
+  "browser_ops.recovery",
+  "browser_ops.workflow",
+  "browser_ops.policy",
+  "browser_ops.support",
+  "browser_ops.execution",
+  "browser_ops.control",
+  "browser_ops.deep_analysis",
+]
+
+[tool.setuptools.package-dir]
+"" = "."

@@ -1,0 +1,13 @@
+{
+  "profile": "example-browser",
+  "route": "browser",
+  "createdAt": "2026-03-18T19:09:46.654675",
+  "status": "initialized",
+  "pagesVisited": 0,
+  "itemsExtracted": 0,
+  "failedUrls": [],
+  "queue": [
+    "https://example.com/"
+  ],
+  "visited": []
+}

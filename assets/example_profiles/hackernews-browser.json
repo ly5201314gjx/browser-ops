@@ -1,0 +1,60 @@
+{
+  "name": "hackernews-browser",
+  "route": "browser",
+  "startUrls": ["https://news.ycombinator.com/news"],
+  "allowedDomains": ["news.ycombinator.com"],
+  "requiresLogin": false,
+  "preferredDevice": "mobile-default",
+  "navigationStyle": "stepwise-visible",
+  "riskTolerance": "balanced",
+  "checkpointPolicy": {
+    "pauseOnLogin": true,
+    "pauseOnMfa": true,
+    "pauseOnCaptcha": true,
+    "pauseOnApproval": true
+  },
+  "interactionPolicy": {
+    "timing": {
+      "betweenActionsMs": [220, 780],
+      "pageSettleMs": [1200, 3000]
+    },
+    "motion": {
+      "postScrollPauseMs": [280, 920]
+    }
+  },
+  "connectivity": {
+    "timeoutSeconds": 12,
+    "retries": 2,
+    "backoffMs": 800,
+    "proxyEnv": "BROWSER_OPS_PROXY",
+    "fallbackBaseUrls": []
+  },
+  "humanCheckpoints": {
+    "captcha": true,
+    "mfa": true,
+    "approval": true
+  },
+  "rateLimitMs": 800,
+  "maxPages": 3,
+  "list": {
+    "itemSelector": "tr.athing",
+    "fallbackItemSelectors": ["tr", "a"],
+    "titleSelector": ".titleline a",
+    "linkSelector": ".titleline a",
+    "summarySelector": "",
+    "nextPageSelector": "a.morelink"
+  },
+  "detail": {
+    "titleSelector": "title",
+    "contentSelector": "body",
+    "timeSelector": "",
+    "authorSelector": "",
+    "tagSelector": "a"
+  },
+  "extraction": {
+    "preferEmbeddedJson": false,
+    "preferNetworkDiscovery": false,
+    "captureScreenshotsOnFailure": true,
+    "outputFormat": "jsonl"
+  }
+}

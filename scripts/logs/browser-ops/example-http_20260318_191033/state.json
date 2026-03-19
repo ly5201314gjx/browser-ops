@@ -1,0 +1,16 @@
+{
+  "profile": "example-http",
+  "route": "http",
+  "createdAt": "2026-03-18T19:10:33.441346",
+  "status": "completed",
+  "pagesVisited": 0,
+  "itemsExtracted": 0,
+  "failedUrls": [
+    {
+      "url": "https://example.com/",
+      "reason": "HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)')))"
+    }
+  ],
+  "queue": [],
+  "visited": []
+}

@@ -1,0 +1,38 @@
+{
+  "name": "example-http",
+  "route": "http",
+  "startUrls": [
+    "https://example.com/"
+  ],
+  "allowedDomains": [
+    "example.com"
+  ],
+  "requiresLogin": false,
+  "humanCheckpoints": {
+    "captcha": true,
+    "mfa": true,
+    "approval": true
+  },
+  "rateLimitMs": 200,
+  "maxPages": 1,
+  "list": {
+    "itemSelector": "a",
+    "titleSelector": "",
+    "linkSelector": "",
+    "summarySelector": "",
+    "nextPageSelector": ""
+  },
+  "detail": {
+    "titleSelector": "h1",
+    "contentSelector": "body",
+    "timeSelector": "time",
+    "authorSelector": ".author",
+    "tagSelector": "a"
+  },
+  "extraction": {
+    "preferEmbeddedJson": true,
+    "preferNetworkDiscovery": false,
+    "captureScreenshotsOnFailure": false,
+    "outputFormat": "jsonl"
+  }
+}

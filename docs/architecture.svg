@@ -1,0 +1,22 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" fill="#0B1020"/>
+  <text x="60" y="60" fill="white" font-size="36" font-family="Arial, sans-serif" font-weight="700">Browser Ops Architecture</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="80" y="110" width="240" height="90" rx="18" fill="#7C3AED"/><text x="125" y="163" fill="white" font-size="28" font-weight="700">Site Intelligence</text>
+    <rect x="400" y="110" width="330" height="90" rx="18" fill="#0EA5E9"/><text x="448" y="163" fill="white" font-size="28" font-weight="700">Orchestrator / Route Kernel</text>
+    <rect x="810" y="110" width="300" height="90" rx="18" fill="#F59E0B"/><text x="853" y="163" fill="white" font-size="28" font-weight="700">Action Policy Layer</text>
+
+    <rect x="120" y="290" width="280" height="100" rx="18" fill="#11182D" stroke="#40507F"/><text x="172" y="347" fill="#E8ECFF" font-size="28" font-weight="700">HTTP / Hybrid Route</text>
+    <rect x="460" y="290" width="280" height="100" rx="18" fill="#11182D" stroke="#40507F"/><text x="524" y="347" fill="#E8ECFF" font-size="28" font-weight="700">Browser Route</text>
+    <rect x="800" y="290" width="280" height="100" rx="18" fill="#11182D" stroke="#40507F"/><text x="835" y="347" fill="#E8ECFF" font-size="28" font-weight="700">Human-in-the-Loop</text>
+
+    <rect x="120" y="500" width="280" height="110" rx="18" fill="#16A34A"/><text x="180" y="562" fill="white" font-size="28" font-weight="700">Runbook / Payload</text>
+    <rect x="460" y="500" width="280" height="110" rx="18" fill="#2563EB"/><text x="533" y="562" fill="white" font-size="28" font-weight="700">Autopilot</text>
+    <rect x="800" y="500" width="280" height="110" rx="18" fill="#DC2626"/><text x="855" y="562" fill="white" font-size="28" font-weight="700">Recovery Kernel</text>
+  </g>
+  <g stroke="#AAB6E8" stroke-width="4">
+    <path d="M320 155H400"/><path d="M730 155H810"/>
+    <path d="M565 200V290"/><path d="M960 200V290"/><path d="M200 200V290"/>
+    <path d="M260 390V500"/><path d="M600 390V500"/><path d="M940 390V500"/>
+  </g>
+</svg>

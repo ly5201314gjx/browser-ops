@@ -1,0 +1,13 @@
+{
+  "profile": "example-news",
+  "route": "browser",
+  "createdAt": "2026-03-18T19:06:15.402138",
+  "status": "initialized",
+  "pagesVisited": 0,
+  "itemsExtracted": 0,
+  "failedUrls": [],
+  "queue": [
+    "https://example.com/news"
+  ],
+  "visited": []
+}
